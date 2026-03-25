@@ -1,1 +1,15 @@
-spring.application.name=rest-with-spring-boot-and-java-cesar
+spring:
+  application:
+    name: rest-with-spring-boot-and-java-cesar
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/rest_with_spring_boot_cesar?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: 13190287
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false

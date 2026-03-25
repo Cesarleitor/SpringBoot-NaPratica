@@ -2,7 +2,7 @@ package br.com.cesar.exception.hadler;
 
 
 import br.com.cesar.exception.ExceptionResponse;
-import br.com.cesar.exception.UnsupportedMathOperationException;
+import br.com.cesar.exception.ResourseNotFoudException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -28,12 +28,12 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
 
     }
 
-    @ExceptionHandler(UnsupportedMathOperationException.class)
-    public final ResponseEntity<ExceptionResponse> handlerBadRequestException(Exception ex, WebRequest request) {
+    @ExceptionHandler(ResourseNotFoudException.class)
+    public final ResponseEntity<ExceptionResponse> handlerNotFoudException(Exception ex, WebRequest request) {
         ExceptionResponse response = new ExceptionResponse(
                 new Date(),
                 ex.getMessage(),
                 request.getDescription(false));
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 }

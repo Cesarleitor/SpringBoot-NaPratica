@@ -21,19 +21,18 @@ public class PersonServices {
 
 
     public List<Person> findAll(){
-        logger.info("Encontrando todas as pessoa!");
+        logger.info("Encontrando todas as pessoas");
 
         return repository.findAll();
     }
-
-
 
     public Person findById(Long id) {
         logger.info("Encontrando uma pessoa!");
 
         return repository.findById(id)
                 .orElseThrow(() ->
-                        new ResourseNotFoudException("Nenhum registro encontrado para este ID."));
+                        new ResourseNotFoudException
+                                ("Nenhum registro encontrado para este ID."));
     }
 
     public Person create(Person person) {
@@ -47,7 +46,8 @@ public class PersonServices {
         logger.info("Atualizar uma pessoa!");
         Person entity = repository.findById(person.getId())
                 .orElseThrow(() ->
-                new ResourseNotFoudException("Nenhum registro encontrado para este ID."));
+                new ResourseNotFoudException
+                        ("Nenhum registro encontrado para este ID."));
 
 
         entity.setFirstName(person.getFirstName());
@@ -64,7 +64,8 @@ public class PersonServices {
         logger.info("Deletar uma pessoa!");
 
         Person entity = repository.findById(id)
-            .orElseThrow(() -> new ResourseNotFoudException("Nenhum registro encontrado para este ID."));
+            .orElseThrow(() -> new ResourseNotFoudException
+                    ("Nenhum registro encontrado para este ID."));
         repository.delete(entity);
 
     }

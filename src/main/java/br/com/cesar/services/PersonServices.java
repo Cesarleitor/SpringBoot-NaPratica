@@ -3,18 +3,19 @@ package br.com.cesar.services;
 import br.com.cesar.exception.ResourseNotFoudException;
 import br.com.cesar.model.Person;
 import br.com.cesar.repository.PersonRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.logging.Logger;
 
 @Service
 public class PersonServices {
 
     private final AtomicLong couter = new AtomicLong();
-    private Logger logger = Logger.getLogger(PersonServices.class.getName());
+    private Logger logger = LoggerFactory.getLogger(PersonServices.class.getName());
 
     @Autowired
     PersonRepository repository;
@@ -27,7 +28,7 @@ public class PersonServices {
     }
 
     public Person findById(Long id) {
-        logger.info("Encontrando uma pessoa!");
+        logger.info("Buscando uma pessoa!");
 
         return repository.findById(id)
                 .orElseThrow(() ->

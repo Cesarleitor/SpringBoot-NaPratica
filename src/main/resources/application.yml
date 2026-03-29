@@ -13,3 +13,7 @@ spring:
       ddl-auto: update
     show-sql: false
     open-in-view: false
+logging:
+    level:
+     # root: WARN
+     br.com.cesar: DEBUG

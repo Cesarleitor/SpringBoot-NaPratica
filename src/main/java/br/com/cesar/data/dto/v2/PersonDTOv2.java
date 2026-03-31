@@ -1,34 +1,24 @@
-package br.com.cesar.model;
+package br.com.cesar.data.dto.v2;
 
-import jakarta.persistence.*;
+
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 
-@Entity
-@Table(name = "person")
-public class Person implements Serializable {
+
+public class PersonDTOv2 implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    @Column(name = "primeiro_nome", nullable = false, length = 80)
     private String firstName;
-
-    @Column(name = "segundo_nome", nullable = false, length = 80)
     private String lastName;
-
-    @Column(name = "address", nullable = false, length = 100)
     private String address;
-
-    @Column(nullable = false, length = 10)
     private String gender;
+    private Date birtDay;
 
-    public Person() {
+    public PersonDTOv2() {
     }
 
     public long getId() {
@@ -71,14 +61,23 @@ public class Person implements Serializable {
         this.gender = gender;
     }
 
+    public Date getBirtDay() {
+        return birtDay;
+    }
+
+    public void setBirtDay(Date birtDay) {
+        this.birtDay = birtDay;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Person person)) return false;
-        return getId() == person.getId() && Objects.equals(getFirstName(), person.getFirstName()) && Objects.equals(getLastName(), person.getLastName()) && Objects.equals(getAddress(), person.getAddress()) && Objects.equals(getGender(), person.getGender());
+        if (o == null || getClass() != o.getClass()) return false;
+        PersonDTOv2 that = (PersonDTOv2) o;
+        return getId() == that.getId() && Objects.equals(getFirstName(), that.getFirstName()) && Objects.equals(getLastName(), that.getLastName()) && Objects.equals(getAddress(), that.getAddress()) && Objects.equals(getGender(), that.getGender()) && Objects.equals(getBirtDay(), that.getBirtDay());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getAddress(), getGender());
+        return Objects.hash(getId(), getFirstName(), getLastName(), getAddress(), getGender(), getBirtDay());
     }
 }

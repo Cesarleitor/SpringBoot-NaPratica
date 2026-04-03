@@ -1,6 +1,14 @@
 package br.com.cesar.data.dto.v1;
 
+import br.com.cesar.serializer.GenderSerializer;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 
@@ -9,10 +17,21 @@ public class PersonDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private long id;
-    private String firstName;
-    private String lastName;
-    private String address;
-    private String gender;
+    private String primeiroNome;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String segundoNome;
+
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    private String telefone;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate aniverssario;
+
+    private String endereco;
+
+    @JsonSerialize(using = GenderSerializer.class)
+    private String sexo;
 
     public PersonDTO() {
     }
@@ -25,46 +44,65 @@ public class PersonDTO implements Serializable {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getPrimeiroNome() {
+        return primeiroNome;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setPrimeiroNome(String primeiroNome) {
+        this.primeiroNome = primeiroNome;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getSegundoNome() {
+        return segundoNome;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSegundoNome(String segundoNome) {
+        this.segundoNome = segundoNome;
     }
 
-    public String getAddress() {
-        return address;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
-    public String getGender() {
-        return gender;
+    public LocalDate getAniverssario() {
+        return aniverssario;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setAniverssario(LocalDate aniverssario) {
+        this.aniverssario = aniverssario;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof PersonDTO person)) return false;
-        return getId() == person.getId() && Objects.equals(getFirstName(), person.getFirstName()) && Objects.equals(getLastName(), person.getLastName()) && Objects.equals(getAddress(), person.getAddress()) && Objects.equals(getGender(), person.getGender());
+        if (o == null || getClass() != o.getClass()) return false;
+        PersonDTO personDTO = (PersonDTO) o;
+        return getId() == personDTO.getId() && Objects.equals(getPrimeiroNome(), personDTO.getPrimeiroNome()) && Objects.equals(getSegundoNome(), personDTO.getSegundoNome()) && Objects.equals(getTelefone(), personDTO.getTelefone()) && Objects.equals(getAniverssario(), personDTO.getAniverssario()) && Objects.equals(getEndereco(), personDTO.getEndereco()) && Objects.equals(getSexo(), personDTO.getSexo());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getAddress(), getGender());
+        return Objects.hash(getId(), getPrimeiroNome(), getSegundoNome(), getTelefone(), getAniverssario(), getEndereco(), getSexo());
     }
 }
+
+

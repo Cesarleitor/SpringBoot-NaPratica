@@ -3,7 +3,6 @@ package br.com.cesar.controllers;
 
 
 import br.com.cesar.data.dto.v1.PersonDTO;
-import br.com.cesar.data.dto.v2.PersonDTOv2;
 import br.com.cesar.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/person/v1")
+@RequestMapping("/person")
 public class PersonController {
 
     @Autowired // VAI INJETAR A INSTÂNCIA DE SERVICE QUANDO FOR NECESSÁRIO
@@ -38,15 +37,6 @@ public class PersonController {
     )
     public PersonDTO create(@RequestBody PersonDTO person) {
         return service.create(person);
-    }
-
-    // CRIAR OS DADOS
-    @PostMapping( value = "/v2",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
-    public PersonDTOv2 create(@RequestBody PersonDTOv2 person) {
-        return service.createV2(person);
     }
 
     //ATUALIZAR OS DADOS

@@ -3,6 +3,7 @@ package br.com.cesar.model;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 
@@ -17,16 +18,22 @@ public class Person implements Serializable {
     private long id;
 
     @Column(name = "primeiro_nome", nullable = false, length = 80)
-    private String firstName;
+    private String primeiroNome;
 
     @Column(name = "segundo_nome", nullable = false, length = 80)
-    private String lastName;
+    private String segundoNome;
 
-    @Column(name = "address", nullable = false, length = 100)
-    private String address;
+    @Column(name = "telefone", nullable = false, length = 80)
+    private String telefone;
 
-    @Column(nullable = false, length = 10)
-    private String gender;
+    @Column(name = "endereco", nullable = false, length = 100)
+    private String endereco;
+
+    @Column(name = "sexo", nullable = false, length = 10)
+    private String sexo;
+
+    @Column(name = "aniverssario", nullable = false)
+    private LocalDate aniverssario;
 
     public Person() {
     }
@@ -39,46 +46,62 @@ public class Person implements Serializable {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getPrimeiroNome() {
+        return primeiroNome;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setPrimeiroNome(String primeiroNome) {
+        this.primeiroNome = primeiroNome;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getSegundoNome() {
+        return segundoNome;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSegundoNome(String segundoNome) {
+        this.segundoNome = segundoNome;
     }
 
-    public String getAddress() {
-        return address;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
-    public String getGender() {
-        return gender;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public LocalDate getAniverssario() {
+        return aniverssario;
+    }
+
+    public void setAniverssario(LocalDate aniverssario) {
+        this.aniverssario = aniverssario;
     }
 
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Person person)) return false;
-        return getId() == person.getId() && Objects.equals(getFirstName(), person.getFirstName()) && Objects.equals(getLastName(), person.getLastName()) && Objects.equals(getAddress(), person.getAddress()) && Objects.equals(getGender(), person.getGender());
+        return getId() == person.getId() && Objects.equals(getPrimeiroNome(), person.getPrimeiroNome()) && Objects.equals(getSegundoNome(), person.getSegundoNome()) && Objects.equals(getTelefone(), person.getTelefone()) && Objects.equals(getEndereco(), person.getEndereco()) && Objects.equals(getSexo(), person.getSexo()) && Objects.equals(getAniverssario(), person.getAniverssario());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getAddress(), getGender());
+        return Objects.hash(getId(), getPrimeiroNome(), getSegundoNome(), getTelefone(), getEndereco(), getSexo(), getAniverssario());
     }
 }

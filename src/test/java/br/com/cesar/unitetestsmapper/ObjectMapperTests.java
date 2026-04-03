@@ -24,10 +24,12 @@ public class ObjectMapperTests {
     public void parseEntityToDTOTest() {
         PersonDTO output = parseObject(inputObject.mockEntity(), PersonDTO.class);
         assertEquals(Long.valueOf(0L), output.getId());
-        assertEquals("First Name Test0", output.getFirstName());
-        assertEquals("Last Name Test0", output.getLastName());
-        assertEquals("Address Test0", output.getAddress());
-        assertEquals("Male", output.getGender());
+        assertEquals("Primeiro Nome Test0", output.getPrimeiroNome());
+        assertEquals("Segundo Nome Test0", output.getSegundoNome());
+        assertEquals("+55 (54) 99999-1000", output.getTelefone());
+        assertEquals("Endereco Test0", output.getEndereco());
+        assertEquals("Masculino", output.getSexo());
+        assertEquals(inputObject.mockEntity().getAniverssario(), output.getAniverssario());
     }
 
     @Test
@@ -36,36 +38,44 @@ public class ObjectMapperTests {
         PersonDTO outputZero = outputList.get(0);
 
         assertEquals(Long.valueOf(0L), outputZero.getId());
-        assertEquals("First Name Test0", outputZero.getFirstName());
-        assertEquals("Last Name Test0", outputZero.getLastName());
-        assertEquals("Address Test0", outputZero.getAddress());
-        assertEquals("Male", outputZero.getGender());
+        assertEquals("Primeiro Nome Test0", outputZero.getPrimeiroNome());
+        assertEquals("Segundo Nome Test0", outputZero.getSegundoNome());
+        assertEquals("+55 (54) 99999-1000", outputZero.getTelefone());
+        assertEquals("Endereco Test0", outputZero.getEndereco());
+        assertEquals("Masculino", outputZero.getSexo());
+        assertEquals(inputObject.mockEntityList().get(0).getAniverssario(), outputZero.getAniverssario());
 
         PersonDTO outputSeven = outputList.get(7);
 
         assertEquals(Long.valueOf(7L), outputSeven.getId());
-        assertEquals("First Name Test7", outputSeven.getFirstName());
-        assertEquals("Last Name Test7", outputSeven.getLastName());
-        assertEquals("Address Test7", outputSeven.getAddress());
-        assertEquals("Female", outputSeven.getGender());
+        assertEquals("Primeiro Nome Test7", outputSeven.getPrimeiroNome());
+        assertEquals("Segundo Nome Test7", outputSeven.getSegundoNome());
+        assertEquals("+55 (54) 99999-1007", outputSeven.getTelefone());
+        assertEquals("Endereco Test7", outputSeven.getEndereco());
+        assertEquals("Feminino", outputSeven.getSexo());
+        assertEquals(inputObject.mockEntityList().get(7).getAniverssario(), outputSeven.getAniverssario());
 
         PersonDTO outputTwelve = outputList.get(12);
 
         assertEquals(Long.valueOf(12L), outputTwelve.getId());
-        assertEquals("First Name Test12", outputTwelve.getFirstName());
-        assertEquals("Last Name Test12", outputTwelve.getLastName());
-        assertEquals("Address Test12", outputTwelve.getAddress());
-        assertEquals("Male", outputTwelve.getGender());
+        assertEquals("Primeiro Nome Test12", outputTwelve.getPrimeiroNome());
+        assertEquals("Segundo Nome Test12", outputTwelve.getSegundoNome());
+        assertEquals("+55 (54) 99999-1012", outputTwelve.getTelefone());
+        assertEquals("Endereco Test12", outputTwelve.getEndereco());
+        assertEquals("Masculino", outputTwelve.getSexo());
+        assertEquals(inputObject.mockEntityList().get(12).getAniverssario(), outputTwelve.getAniverssario());
     }
 
     @Test
     public void parseDTOToEntityTest() {
         Person output = parseObject(inputObject.mockDTO(), Person.class);
         assertEquals(Long.valueOf(0L), output.getId());
-        assertEquals("First Name Test0", output.getFirstName());
-        assertEquals("Last Name Test0", output.getLastName());
-        assertEquals("Address Test0", output.getAddress());
-        assertEquals("Male", output.getGender());
+        assertEquals("Primeiro Nome Test0", output.getPrimeiroNome());
+        assertEquals("Segundo Nome Test0", output.getSegundoNome());
+        assertEquals("+55 (54) 99999-1000", output.getTelefone());
+        assertEquals("Endereco Test0", output.getEndereco());
+        assertEquals("Masculino", output.getSexo());
+        assertEquals(inputObject.mockDTO().getAniverssario(), output.getAniverssario());
     }
 
     @Test
@@ -74,25 +84,31 @@ public class ObjectMapperTests {
         Person outputZero = outputList.get(0);
 
         assertEquals(Long.valueOf(0L), outputZero.getId());
-        assertEquals("First Name Test0", outputZero.getFirstName());
-        assertEquals("Last Name Test0", outputZero.getLastName());
-        assertEquals("Address Test0", outputZero.getAddress());
-        assertEquals("Male", outputZero.getGender());
+        assertEquals("Primeiro Nome Test0", outputZero.getPrimeiroNome());
+        assertEquals("Segundo Nome Test0", outputZero.getSegundoNome());
+        assertEquals("+55 (54) 99999-1000", outputZero.getTelefone());
+        assertEquals("Endereco Test0", outputZero.getEndereco());
+        assertEquals("Masculino", outputZero.getSexo());
+        assertEquals(inputObject.mockDTOList().get(0).getAniverssario(), outputZero.getAniverssario());
 
         Person outputSeven = outputList.get(7);
 
         assertEquals(Long.valueOf(7L), outputSeven.getId());
-        assertEquals("First Name Test7", outputSeven.getFirstName());
-        assertEquals("Last Name Test7", outputSeven.getLastName());
-        assertEquals("Address Test7", outputSeven.getAddress());
-        assertEquals("Female", outputSeven.getGender());
+        assertEquals("Primeiro Nome Test7", outputSeven.getPrimeiroNome());
+        assertEquals("Segundo Nome Test7", outputSeven.getSegundoNome());
+        assertEquals("+55 (54) 99999-1007", outputSeven.getTelefone());
+        assertEquals("Endereco Test7", outputSeven.getEndereco());
+        assertEquals("Feminino", outputSeven.getSexo());
+        assertEquals(inputObject.mockDTOList().get(7).getAniverssario(), outputSeven.getAniverssario());
 
         Person outputTwelve = outputList.get(12);
 
         assertEquals(Long.valueOf(12L), outputTwelve.getId());
-        assertEquals("First Name Test12", outputTwelve.getFirstName());
-        assertEquals("Last Name Test12", outputTwelve.getLastName());
-        assertEquals("Address Test12", outputTwelve.getAddress());
-        assertEquals("Male", outputTwelve.getGender());
+        assertEquals("Primeiro Nome Test12", outputTwelve.getPrimeiroNome());
+        assertEquals("Segundo Nome Test12", outputTwelve.getSegundoNome());
+        assertEquals("+55 (54) 99999-1012", outputTwelve.getTelefone());
+        assertEquals("Endereco Test12", outputTwelve.getEndereco());
+        assertEquals("Masculino", outputTwelve.getSexo());
+        assertEquals(inputObject.mockDTOList().get(12).getAniverssario(), outputTwelve.getAniverssario());
     }
 }

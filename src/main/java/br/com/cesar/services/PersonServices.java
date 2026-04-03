@@ -2,12 +2,10 @@ package br.com.cesar.services;
 
 
 import br.com.cesar.data.dto.v1.PersonDTO;
-import br.com.cesar.data.dto.v2.PersonDTOv2;
 import br.com.cesar.exception.ResourseNotFoudException;
 import static br.com.cesar.mapper.ObjectMapper.parseListObject;
 import static br.com.cesar.mapper.ObjectMapper.parseObject;
 
-import br.com.cesar.mapper.custom.PersonMapper;
 import br.com.cesar.model.Person;
 import br.com.cesar.repository.PersonRepository;
 import org.slf4j.Logger;
@@ -15,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -29,8 +28,6 @@ public class PersonServices {
     @Autowired
     PersonRepository repository;
 
-    @Autowired
-    PersonMapper converter;
 
 
     public List<PersonDTO> findAll(){
@@ -52,18 +49,15 @@ public class PersonServices {
     public PersonDTO create(PersonDTO person) {
 
         logger.info("Criando uma pessoa!");
+        if (person.getAniverssario() == null) {
+            person.setAniverssario(LocalDate.now());
+        }
         var entity = parseObject(person, Person.class);
 
         return parseObject(repository.save(entity), PersonDTO.class);
     }
 
-    public PersonDTOv2 createV2(PersonDTOv2 person) {
 
-        logger.info("Criando uma pessoa V2!");
-        var entity = converter.converterDTOtoEntity(person);
-
-        return converter.convertEntityToDTO(repository.save(entity));
-    }
     public PersonDTO update(PersonDTO person) {
 
         logger.info("Atualizar uma pessoa!");
@@ -73,10 +67,12 @@ public class PersonServices {
                         ("Nenhum registro encontrado para este ID."));
 
 
-        entity.setFirstName(person.getFirstName());
-        entity.setLastName(person.getLastName());
-        entity.setAddress(person.getAddress());
-        entity.setGender(person.getGender());
+        entity.setPrimeiroNome(person.getPrimeiroNome());
+        entity.setSegundoNome(person.getSegundoNome());
+        entity.setTelefone(person.getTelefone());
+        entity.setEndereco(person.getEndereco());
+        entity.setSexo(person.getSexo());
+        entity.setAniverssario(person.getAniverssario() != null ? person.getAniverssario() : entity.getAniverssario());
 
         return parseObject(repository.save(entity), PersonDTO.class);
     }

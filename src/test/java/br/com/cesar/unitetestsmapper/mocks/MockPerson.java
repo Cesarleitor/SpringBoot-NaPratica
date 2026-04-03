@@ -1,6 +1,7 @@
 package br.com.cesar.unitetestsmapper.mocks;
 
 import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
 
 import br.com.cesar.data.dto.v1.PersonDTO;
@@ -35,21 +36,25 @@ public class MockPerson {
     
     public Person mockEntity(Integer number) {
         Person person = new Person();
-        person.setAddress("Address Test" + number);
-        person.setFirstName("First Name Test" + number);
-        person.setGender(((number % 2)==0) ? "Male" : "Female");
+        person.setEndereco("Endereco Test" + number);
+        person.setPrimeiroNome("Primeiro Nome Test" + number);
+        person.setSexo(((number % 2)==0) ? "Masculino" : "Feminino");
         person.setId(number.longValue());
-        person.setLastName("Last Name Test" + number);
+        person.setSegundoNome("Segundo Nome Test" + number);
+        person.setTelefone("+55 (54) 99999-10" + String.format("%02d", number));
+        person.setAniverssario(LocalDate.of(2024, 1, 1).plusDays(number.longValue()));
         return person;
     }
 
     public PersonDTO mockDTO(Integer number) {
         PersonDTO person = new PersonDTO();
-        person.setAddress("Address Test" + number);
-        person.setFirstName("First Name Test" + number);
-        person.setGender(((number % 2)==0) ? "Male" : "Female");
+        person.setEndereco("Endereco Test" + number);
+        person.setPrimeiroNome("Primeiro Nome Test" + number);
+        person.setSexo(((number % 2)==0) ? "Masculino" : "Feminino");
         person.setId(number.longValue());
-        person.setLastName("Last Name Test" + number);
+        person.setSegundoNome("Segundo Nome Test" + number);
+        person.setTelefone("+55 (54) 99999-10" + String.format("%02d", number));
+        person.setAniverssario(LocalDate.of(2024, 1, 1).plusDays(number.longValue()));
         return person;
     }
 
